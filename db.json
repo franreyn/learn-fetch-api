@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "name": "Rick",
+      "email": "rick@aol.com",
+      "id": 1
+    },
+    {
+      "name": "Morty",
+      "email": "morty@aol.com",
+      "id": 2
+    },
+    {
+      "name": "Summer",
+      "email": "summer@aol.com",
+      "id": 3
+    },
+    {
+      "name": "Frankie",
+      "email": "frankie@frankie.com",
+      "id": 4
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

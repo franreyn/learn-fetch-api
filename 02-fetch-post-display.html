@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Fetch API</h1>
+  <div id="display-data"></div>
+  <form id="form">
+    <input name="name" type="text" placeholder="Name"></input>
+    <input name="email" type="text" placeholder="Email"></input>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
+<!-- Start CSS -->
+<style>
+
+  * { font-family: sans-serif; }
+
+  p { margin-top: 0; }
+
+  #display-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 15px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border: 1px solid lightgray;
+    padding: 5px;
+  }
+
+  #form { 
+    text-align: center;
+    margin: 50px auto; }
+
+</style>
+<!-- Start JS -->
+<script>
+
+  const displayData = document.getElementById("display-data"); // Get element to append data to the DOM
+  const fetchUrl = "http://localhost:3000/posts"; // Set a URL to fetch from
+  const form = document.getElementById("form"); // Get the form
+ 
+ // Async function to Fetch the data
+  const getInitialData = async () => {
+    const response = await fetch(fetchUrl);
+    const data = await response.json();
+    return data;
+  };
+
+  // Async function to display data
+  const displayUsers = async () => {
+    const initialPayload = await getInitialData(); // Fire the function to get the data (as an array) and set it to a constant
+
+    let dataArray = initialPayload.map((item) => { // Map through the array
+    const { name, email } = item; // Deconstruct individual items from Item
+
+    return `
+      <div class="card">
+        <p>Name: <b>${name}</b></p>
+        <p>Email: <b>${email}</b></p>
+      </div>
+    `
+  }).join("") // Concatenate all instances to a single one
+    displayData.innerHTML = dataArray; // Append items into the DOM
+  }
+  displayUsers(); // Fire the function to display data
+ 
+  // Async function to post data
+  const postData = async (urlPayload) => {
+    const r = await fetch(fetchUrl, { method: "POST", body: urlPayload, });
+    const d = await r.json();  
+    console.log(d);
+  };
+ 
+  // Post data on Submit event
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const postPayload = new FormData(form);
+    const urlPayload = new URLSearchParams(postPayload);
+
+    postData(urlPayload); // Fire function to post data
+  });
+
+ </script>
