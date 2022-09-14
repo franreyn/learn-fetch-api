@@ -1,4 +1,4 @@
-# Fetch API
+# Learn Fetch API
 
 A repository designed to help web developers learn how to Get, Post, and Delete data using an API.
 
@@ -17,7 +17,7 @@ A repository designed to help web developers learn how to Get, Post, and Delete 
 ### Lessons
 
 - ```01-fetch-display.html```: Learn how to use the Fetch API to get data from a server, and then display it in the DOM. 
-- ```02-fetch-post-display.html```: Learn how to use the Fetch API to delete an entry from your data. 
+- ```02-fetch-post-display.html```: Learn how to use the Fetch API to add an entry to your data. 
 
 ## Author
 
